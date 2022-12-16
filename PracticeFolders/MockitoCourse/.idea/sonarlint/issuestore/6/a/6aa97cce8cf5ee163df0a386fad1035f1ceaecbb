@@ -1,0 +1,8 @@
+
+\
+java:S1172"?Remove these unused method parameters "toAddress", "emailText".(¶Ô—8È€Î¸0
+^
+java:S1172"ARemove these unused method parameters "toAddresses", "emailText".(ÿòÁ‹8Ê€Î¸0
+t
+java:S1172"RRemove these unused method parameters "toAddress", "emailText", "attachmentBytes".(ÿ°Æíüÿÿÿÿ8Ì€Î¸0
+U	java:S106 "9Replace this use of System.out or System.err by a logger.(ÊÅ˜8Ò€Î¸0

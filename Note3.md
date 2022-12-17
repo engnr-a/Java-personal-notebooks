@@ -1,4 +1,4 @@
-# Course 3--Javanista
+# C3
 ### Table of Content
 | #   | Title                                                                        |
 |-----|------------------------------------------------------------------------------|
@@ -19,9 +19,6 @@
 | 15  | Java Web Services: Integrating Web Services with a Database                  |
 | 16  | Java Web Services: Building REST APIs                                        |
 | 17  | Java Web Services: Enabling CRUD Operations with REST APIs                   |
-| 18  | Final Exam: Javanista                                                        |
-| 19  | Javanista Labs                                                               |
-
 
 
 ## 1: Serialization in Java: Getting Started with Object Serialization

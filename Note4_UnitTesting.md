@@ -1,4 +1,4 @@
-# Course 4--Unit Testing
+# C4 - Unit Testing
 ### Table of Content
 | #   | Title                                                                     |
 |-----|---------------------------------------------------------------------------|
@@ -10,8 +10,7 @@
 | 6   | Unit Testing with Mocks: Getting Started with Mockito                     |
 | 7   | Unit Testing with Mocks: Creating Mocks & Verifying Behavior              |
 | 8   | Unit Testing with Mocks: Mocking Exceptions & Using Spies                 |
-| 9   | Final Exam: Unit Testing                                                  |
-| 10  | Laboratory                                                                |
+
 
 ### Reference: JUnit Annotations and Methods
 **Annotations:**

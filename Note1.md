@@ -1,4 +1,4 @@
-# ONE
+# C1
 ### TOC
 | #   | Title                                                                               |
 |-----|-------------------------------------------------------------------------------------|
@@ -16,8 +16,6 @@
 | 12  | Mapping Relationships in Java: Overriding Methods and Using Access Modifiers        | 
 | 13  | Mapping Relationships in Java: Working with Interfaces & Class Loaders              |
 | 14  | Interactive Java & JShell: Writing Java Programs with the Interactive JShell        |
-| 15  | Final Exam:                                                                         |
-| 16  | Laboratory:                                                                         |
 
 
 ## Java Variables and Primitive Types

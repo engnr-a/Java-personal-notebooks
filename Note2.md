@@ -1,4 +1,4 @@
-# Course 2--Java Apprentice 
+# C2 
 ### Table of Content
 | #   | Title                                                                 | 
 |-----|-----------------------------------------------------------------------|
@@ -19,8 +19,7 @@
 | 15  | **Java: Leveraging Reflection to Build Dynamic Proxies & Unit Tests** | 
 | 16  | Java Archive (JAR): Building Java Archives                            | 
 | 17  | Java Archive (JAR): Packaging Java Apps Using Maven                   | 
-| 18  | Final Exam: Java Apprentice                                           | 
-| 19  | Java Apprentice Labs                                                  | 
+
 
 ## 1: Handling Errors: An Introduction to Exceptions 
 **(A) Types of Exceptions and their Handlers**
@@ -4563,12 +4562,14 @@ ID:2222, name:Lisa, phone:null, email:json@gmail.com
 
 ## 10: Classes in Java: Creating & Using Anonymous Classes
 **Anonymous classes** allows the definition of codes that are use-and-throw. They are _defined_ and _instantiated_ at\
-the same time (defined and used right away). They are called anonymous because they do not have a name\ 
+the same time (defined and used right away). They are called anonymous because they do not have a name.
+
 The most common use case is when a class that implements an interface has no further use. A particular and popular\
-use case is to implement an object that implements the `Comparator` interface.\
+use case is to implement an object that implements the `Comparator` interface.
+
 **(A) Using Anonymous Classes in Java**
 * An anonymous class is nested inner class that is defined without a name for the class.
-* Interfaces are the most popular method for instantiating anonymous classes.
+* Interfaces are the most popular method for instantiating anonymous classes. **Functional interfaces** in particular.
 * After an anonymous class has been instantiated, any value it returns or method is exposes can be used in same manner\
 as we will use a declared variable assigned to an object of regular class.
 * The entirety of an anonymous class is considered a single java statement. Hence, it must end with `;`
@@ -5032,10 +5033,16 @@ public interface Greeting {
     String simpleGreetingByName(String name);
 }
 ```
-* **greet()** method within the Main class accepts a String object and any object that implements the Greeting interface.\
-It then invokes the simpleGreetingByName() method in argument object that implements the Greeting interface.
-**Greeting** interface implementation can either be done via anonymous class or via a lambda expression. Both can be passed
-directly as arguments to greet() method. Both methods of implementation are presented below:
+The `greet()` method within the Main class below accepts a `String` object and any object that implements the `Greeting` interface.\
+It then invokes the `simpleGreetingByName()` (a method of the `Greeting` interface) method on the argument using any object that\
+implements the `Greeting` interface. 
+
+The method takes argument(s) to be parsed to the interface, and an implementation of the interface. Hence, in essence, the method\
+acts as **linkage** between the interface, the method of the interface, and the argument(s) of the method of the interface. This\
+is the basis of the schema for using lambda expression or statement to implement functional interfaces.
+
+Implementation of the `Greeting` can either be done via **anonymous class** or via a **lambda expression**. Both can be passed
+directly as arguments to `greet()` method. Both methods of implementation are presented below for comparison:
 ```java
 public class Main {
   public static void greet(String name, Greeting greeting) {
@@ -5070,9 +5077,7 @@ public class Main {
 ```
 
 * A lambda that is possible to implement in a single line of code is known as **lambda expression**. A lambda requiring\
-multiple lines of code is known as **lambda statement**.
-* Lambda statement need to be enclosed in {}.
-
+multiple lines of code is known as **lambda statement**. Lambda statement need to be enclosed in `{}`.
 ```java
 public class Main{
     
@@ -5223,7 +5228,7 @@ A Home class
 
 ```java
 package simplepracticeclasses;
-
+@Data //Annotation from lombok library to replace the getters, setters, and toString boilerplate codes
 public class Home {
 
     private String type;
@@ -5237,45 +5242,8 @@ public class Home {
         this.areaSqFt = areaSqFt;
         this.price = price;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getAreaSqFt() {
-        return areaSqFt;
-    }
-
-    public void setAreaSqFt(int areaSqFt) {
-        this.areaSqFt = areaSqFt;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%nType:%s, City:%s, Area:%d, Price:%d", type, city, areaSqFt, price);
-    }
+    
 }
-
 ```
 
 A generic method that takes in two arguments; a generic list, and any object that implements the generic functional interface.\
@@ -5319,6 +5287,7 @@ public class Main{
 ```
 
 **(E) Using @FunctionalInterface Annotation**
+
 A built-in annotation in java that only serves information purpose
 
 ```java
@@ -5350,15 +5319,18 @@ public interface Greeting {
 }
 ```
 **(F) Predicate, Consumer, Function, Supplier**
+
 **Types of Functional Interfaces:**
-A Predicate Interface is a functional interface used to filter a collection of objects. It performs a test/conditional\
+
+A **predicate** Interface is a functional interface used to filter a collection of objects. It performs a test/conditional\
 check on the object. The Filter interface from previous sections is a typical example of predicates.
-A Consumer Interface is used to consume data, acts as a sink for the filtered or processed data. The final data will be
+
+A **consumer** Interface is used to consume data, acts as a sink for the filtered or processed data. The final data will be\
 consumed: printout to screen, store in database e.t.c. Its method is usually named accept().
-The Functional interface is the function/method that is typically used to transform data from e.g. type T to type R. Its\
+
+The **functional** interface is the function/method that is typically used to transform data from e.g. type T to type R. Its\
 apply method typically does transformation operations.
-Below is the use of both Predicate, Functional, and Consumer Functional interface by a method to perform filtering,\
-transforming and consuming operation.
+
 1. Predicate interface
 ```java
 public interface Predicate<T>{
@@ -5416,13 +5388,14 @@ public interface Supplier{
 }
 ```
 
-All the functions java package java.util.function package contains all the four packages explained. Hence, instead of\
-going through the trouble of defining it as above, they can be used from this package. 
+The java package `java.util.function` contains all the four packages explained. Hence, instead of going through the trouble of\
+defining it as above, they can be used from this package. 
 
 **(G) Method References: Static and Instance Methods**
-Method references makes the lambda expressions and statement more readable and compact.
-The most commonly used method reference is static method reference.
-1. Example of method reference on the **SSystem class**
+
+Method references makes the lambda expressions and statement more readable and compact. The most commonly used method reference\
+is static method reference.
+1. Example of method reference on the **System class**
 ```java
 public class Main{
   public static void main(String[] args) {
@@ -5474,7 +5447,7 @@ public class Main{
 
 ```java
 package simplepracticeclasses;
-
+@Data //lombok library
 public class Home {
 
     private String type;
@@ -5488,44 +5461,7 @@ public class Home {
         this.areaSqFt = areaSqFt;
         this.price = price;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getAreaSqFt() {
-        return areaSqFt;
-    }
-
-    public void setAreaSqFt(int areaSqFt) {
-        this.areaSqFt = areaSqFt;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%nType:%s, City:%s, Area:%d, Price:%d", type, city, areaSqFt, price);
-    }
-
+    
     public static int compareByPrice(Home home1, Home home2) {
         return Integer.valueOf(home1.getPrice()).compareTo(home1.getPrice());
     }
@@ -5607,8 +5543,7 @@ public class Main {
 * Reflection is a programming technique that accesses and modifies class and object information at runtime.
 * Java have some powerful set of Reflection APIs which reflects the emphasis that java place on type safety.
 * All instances of class in java are represented by the `java.lang.Class`
-* All instances of objects in java re represented by the `java.lang.Object`
-* Employee Class
+* All instances of objects in java are represented by the `java.lang.Object`
 
 ```java
 package simplepracticeclasses;
@@ -5622,7 +5557,7 @@ import java.util.Random;
 @Setter //Use of lombok library to reduce boilerplate codes(getters and setters).
 public class Employee {
 
-    public static final String organization = "DHL";
+    public static final String organization = "NASA";
     private static final Random employeeIdGenerator = new Random();
 
     private int employeeId;
@@ -5668,11 +5603,10 @@ public class Main{
     System.out.println(jack); //Employee ID:77593495, Name:null, Title:null, Salary:0.000000
 
     //An object of the Employee class using a parameterized constructor
-
     Employee henry = new Employee("Henry", "Senior Engineer", 10);
     System.out.println(henry); //Employee ID:1227223275, Name:Henry, Title:Senior Engineer, Salary:10.000000
 
-    //Invoccation of member methods on the object
+    //Invocation of member methods on the object
     jack.setName("Jack");
     jack.setTitle("Trainee");
     System.out.println(jack); //Employee ID:811101237, Name:Jack, Title:Trainee, Salary:0.000000
@@ -5681,10 +5615,9 @@ public class Main{
 }
 ```
 **(A) Extracting Class Information from Objects**
-* Two _retrospection_ methods used for obtaining metadata of class (types/class that an object belongs to) 
-* Every **class** is both an **object** and a **variable**.
-* Hence, it's possible to invoke method directly on a class (i.e. _Employee.class, Employee.class instanceof)_
-* All class java are instance of java.lang.Class 
+
+* Every **class** is both an **object** and a **variable**. * Hence, it's possible to invoke method directly on a class\
+(e.g. _Employee.class, Employee.class instanceof)_. All classes in java are instance of `java.lang.Class`. 
 ```java
 public class Main {
   public static void main(String[] args) {
@@ -5707,10 +5640,11 @@ public class Main {
 ```
 
 **(B) Viewing Class Fields, Methods, Constructors and Their Modifiers**
+
 Making use of the java _Reflection API_ to access fields, methods, and constructors of a class/objects
-1. Accessing the **fields** of a class/object
-The `getFields()` method returns only the _public_ fields of class.
-The `getDeclaredFields()` method returns both _private_ and _protected_ fields of a class.
+1. Accessing the **fields** of a class/object\
+The `getFields()` method returns only the _public_ fields of class\
+The `getDeclaredFields()` method returns both _private_ and _protected_ fields of a class
 
 ```java
 package simplepracticeclasses;
@@ -5759,11 +5693,10 @@ public class Main {
     }
 }
 ```
-2. Accessing the **methods** of a class/object.
-The `getMethods()` method returns only the _public_ methods of class.
-The `getDeclaredMethod()` method returns both _private_ and _protected_ methods of a class.
-Note that the printedout of getMethods methods in this example is rather long due to the lombok library. While the other\
-methods accesses only private and protected methods particular to the Employee class itself. 
+2. Accessing the **methods** of a class/object\
+The `getMethods()` method returns only the _public_ methods of class\
+The `getDeclaredMethod()` method returns both _private_ and _protected_ methods of a class\
+Note that the printout of `getMethods` in this example is rather long due to the lombok library. 
 ```java
 import java.lang.reflect.Method; //Important import
 
@@ -5862,15 +5795,16 @@ public class Main{
 }
 ```
 
-**(C) Examining Class Objects for Different Data Types**
+**(C) Examining Class Objects for Different Data Types**\
 **Refresher:**
-* A relevant classification of types related to reflections in java is the **Primitive** and **Reference** Types
-* All _Reference Types_ **inherits** from a common universal base class(`java.lang.Object`). The non-reference types are\
-are they _primitive types_. The primitive types **DON'T** _inherit_ from the common base class(`java.lang.Object`). Hence,
-they are not an Object as such.
-* Primitive types **DON'T** have methods/functions. Impossible to invoke methods on primitive types.
-* Example of reference types are the wrapper types: Double, Integer, String e.t.c.
+* A relevant classification of types related to reflections in java is the **Primitive** and **Reference** types
+* All _Reference Types_ **inherits** from a common universal base class (`java.lang.Object`). The _non-reference_ types are\
+the so-called _primitive types_. The primitive types **DON'T** _inherit_ from the common base class(`java.lang.Object`). Hence,\
+they are not an object as such.
+* Primitive types **DON'T** have methods/functions. It is not possible to invoke methods on primitive types.
 * Example of primitive types are double, int, boolean, float.
+* Example of reference types are the wrapper types: Double, Integer, String e.t.c.
+
 ```java
 public class Main{
   public static void main(String[] args) {
@@ -5898,10 +5832,10 @@ public class Main{
   }
 }
 ```
-* An ArrayList is a _generic container_ which means it can be either instantiated with/without a parameter.However, use\
+* An `ArrayList` is a _generic container_ which means it can be either instantiated with/without a parameter.However, use\
 of un-parameterized (raw) objects usually lead to lose of type safety.
-* However, as shown below, the getClass() method doesn't return the type parameter. The getClass() output of the\
-parametrized and raw object of ArrayList is same.
+* However, as shown below, the `getClass()` method doesn't return the type parameter. Hence, the `getClass()` output of the\
+parametrized and raw object of `ArrayList` is same.
 
 ```java
 public class Main{
@@ -5922,9 +5856,10 @@ public class Main{
 ```
 
 **(D) Identifying Classes Using Objects**
-Every object holds information about its class.
-**Reminder:**`Array` can hold both primitive types (int, double) and wrapper/reference types(Integer, Double). On the\
-other hand,`ArrayList` can hold only the wrapper/reference types.
+
+Every object holds information about its class.\
+**Reminder:** Arrays can hold both primitive types (int, double) and wrapper/reference types(Integer, Double). On the\
+other hand,an `ArrayList` can hold only the wrapper/reference types.
 ```java
 public class Main {
   public static void main(String[] args) {
@@ -5975,10 +5910,10 @@ public class AppaMain{
     
 }
 ```
-**NOTE:**
+**NOTE:**\
 Primitive variables/types are **NOT** objects. They have NO objects or methods. Hence, we if we have a variable of the\
-primitive types(such as shown below) we cant invoke any method including getClass() on them.
-However, even the primitive types are represented by classes. Hence, we are able to use .class
+primitive types(such as shown below), we can't invoke any method including `getClass()` on them. However, even the primitive\
+types are represented by classes. Hence, we are able to use `.class`
 ```java
 public class Main{
   public static void main(String[] args) {
@@ -5995,12 +5930,14 @@ public class Main{
   }
 }
 ```
-**(D) Viewing Fully Qualified Class Names**
+**(E) Viewing Fully Qualified Class Names**
+
 It is possible to mark a class as final
+
 **Reminder:** 
 An **abstract** class is a class with at least one unimplemented method which its children class must implement. Abstract\
-classes **CAN'T** be instantiated directly. (e.g Department class below)
-A **Final** class is a class that can't be extended. The leaf node in an inheritance hierrarchy tree.
+classes **CAN'T** be instantiated directly. (e.g Department class below)\
+A **final** class is a class that can't be extended. The leaf node in an inheritance hierrarchy tree.
 
 ```java
 package simplepracticeclasses;
@@ -6105,11 +6042,12 @@ public class Main {
     }
 }
 ```
-**(E) Viewing Modifiers of Class Members**
+**(F) Viewing Modifiers of Class Members**
+
 **Reminder:** example of modifiers; static, final, private e.t.c
-The method `getModifiers()` of the `java.lang.reflect` API returns an integer value that represents the modifier of the\ 
-class. This int value is not very informative. However, the API provides other informative methods that works in\
-conjunction with the getModifiers() method.
+
+The method `getModifiers()` of the `java.lang.reflect` API returns an integer value that represents the modifier of the class. This\
+int value is not very informative. However, the API provides other informative methods that works in conjunction with the `getModifiers()` method.
 ```java
 import java.lang.reflect.Modifier;
 public class Main {
@@ -6140,7 +6078,8 @@ public class Main {
 }
 ```
 
-**(F) Anonymous, Local, Member Classes, and Interfaces**
+**(G) Anonymous, Local, Member Classes, and Interfaces**
+
 Reminder: **Interfaces**(e.g. Deliverables interface) can't be directly instantiated.
 
 ```java
@@ -6256,7 +6195,7 @@ public class AppaMain{
 }
 ```
 
-**(G) Identifying Arrays and Primitives**
+**(H) Identifying Arrays and Primitives**
 ```java
 public class Main {
   public static void main(String[] args) throws ClassNotFoundException {
@@ -6267,7 +6206,7 @@ public class Main {
   }
 }
 ```
-**(H) Viewing Class Package, Superclass, Declaring Class**
+**(I) Viewing Class Package, Superclass, Declaring Class**
 ```java
 public class AppaMain{
   public static void main(String[] args) throws ClassNotFoundException{
@@ -6314,6 +6253,7 @@ public class AppaMain{
 ```
 ## 13: Java: Accessing Constructors, Methods, & Fields Using Reflection
 **(A) Accessing Constructors Using Reflection**
+
 The `java.lang.reflect.Constructor` uses the reflection API to construct new instances of a class.\
 Some relevant modifications have been made to Employee class: there are now 4 different constructors and some member 
 fields/properties have initial values.
@@ -6329,7 +6269,7 @@ import java.util.Random;
 @Getter
 @Setter //Use of lombok library to reduce boilerplate codes(getters and setters).
 public class Employee {
-    public static final String organization = "DHL";
+    public static final String organization = "Apple";
     private static final Random employeeIdGenerator = new Random();
     private int employeeId;
     public String name = "Unknown";
@@ -6375,9 +6315,9 @@ The signature of the main method contains the following exceptions:
 1. The `InstantiationException` deals with instantiation of abstract class(abstract class aren't meant to be instantiated).
 2. The `NoSuchMethodException` deals with calling a non-existent method in a class.
 3. The `InvocationTargetException` thrown when the underlying constructor throws any exception in general.
-4. The `IllegalAccessException` thrown when the constructor object needs to enforced access control based on modifiers.
-Access to ALL (private, public, protected e.t.c) is provided by `getDeclaredConstructors()` while `getConstructors()`\
-gives access to only the public constructor.
+4. The `IllegalAccessException` thrown when the constructor object needs to enforced access control based on modifiers. \
+Access to ALL (private, public, protected e.t.c) is provided by `getDeclaredConstructors()` while `getConstructors()`gives\
+access to only the public constructor.
 ```java
 public class AppaMain{
   public static void main(String[] args)
@@ -6442,14 +6382,14 @@ public class AppaMain{
 ```
 
 **(B) Creating Objects Using Constructor Handles**
-The method `getConstructors()` gives access to metadata information. However `getConstructor()` enables the creation of\
-a Constructor object from the available constructors(s) of a class. 
-The Employee class, has 3 different parametrized constructors and 1 no-argument constructor. A new constructor object\ 
-can then be created from the obtained constructor (`getConstructor()`)object using the `newInstance()` method.\
-The constructor object created, even though is an instance of Employee class, has no direct access to the methods or\ 
-parameters of the Employee class. It instead has access only to the methods of the `java.lang.Object`.\
-The constructor object can be **down casted** to the employee class. This provides access to the methods and variables\
-of the Employee class.\
+
+The method `getConstructors()` gives access to metadata information. However `getConstructor()` also enables the creation of\
+a `Constructor` object from the available constructors(s) of a class\
+The Employee class, has 3 different parametrized constructors and 1 no-argument constructor. A new constructor object can then\
+be created from the obtained constructor (`getConstructor()`)object using the `newInstance()` method. \
+The constructor object created, even though is an instance of Employee class, has no direct access to the methods or parameters\
+of the Employee class. It instead has access only to the methods of the `java.lang.Object`. \
+The constructor object can be **down casted** to the employee class. This provides access to the methods and variables of the Employee class.
 ```java
 public class Main {
   public static void main(String[] args)
@@ -6497,9 +6437,11 @@ public class Main {
 }
 ```
 
-**(B) Accessing Field Metadata**
+**(C) Accessing Field Metadata**
+
 Fields can refer to both member parameters/variables and methods/function. However, this section covers fields in terms\
-of member variables using the `java.lang.reflect.Field` API.\
+of member variables using the `java.lang.reflect.Field` API.
+
 The modifier `transient` is relevant to serialization of objects. It prohibits java from serializing the object.\
 The keyword `volatile` is used for atomic access. Variables are marked as such to reduce the risk of memory consistency\
 errors for multithreaded applications.
@@ -6523,7 +6465,7 @@ public class Employee {
         CONTRACT
     }
 
-    public static final String organization = "DHL";
+    public static final String organization = "Amazon";
     private static final transient Random employeeIdGenerator = new Random();
     private int employeeId;
     public String name = "Unknown";
@@ -6656,7 +6598,8 @@ public class AppaMain{
   }
 }
 ```
-**(C) Getting and Setting Field Values**
+**(D) Getting and Setting Field Values**
+
 **Refresher on Modifiers:**
 ```java
 public class AppaMain {
@@ -6787,8 +6730,9 @@ public class Main {
   }
 }
 ```
-**(D) Accessing Public, Private, and Protected Methods**
-The current section deals with Fields in term of member functions/methods. A method can also be abstract.\
+**(E) Accessing Public, Private, and Protected Methods**
+
+The current section deals with Fields in terms of member functions/methods. A method can also be abstract.\
 As previous sections; getMethods returns only public methods while getDeclaredMethods returns ALL.\
 The last three methods have the word **"native"**. Native indicates that a method is implemented in a language other than\
 java such as C, C++ e.t.c.
@@ -7157,10 +7101,10 @@ public class Main{
 ```
 ## 14: Java: Working with Annotations, Generics, & Arrays Using Reflection
 **(A)**
-The java annotation API import `java.lang.annotation.Annotation` .
-Not all annotations can picked up by reflection. According to the _retention policy_, only annotations with retention\
-policy if runtime can be accessed via reflection. Hence, `@Override` and `@SuppressWarning` are not available at runtime,
-while `@Deprecated` is available at runtime.
+
+The java annotation API import `java.lang.annotation.Annotation`. Not all annotations can be picked up by reflection. According to\
+the _retention policy_, only annotations with retention policy if runtime can be accessed via reflection. Hence, `@Override` and `@SuppressWarning`\
+are not available at runtime, while `@Deprecated` is available at runtime.
 ```java
 public class Main {
   public static void main(String[] args)
@@ -7227,6 +7171,7 @@ public class Main {
 }
 ```
 **(B) Configuring Custom Annotations for Reflective Access**
+
 Every annotation has to have a **retention** and **target** policy. If the retention policy is not specified, the\
 default is used. Hence, a custom annotation with no retention policy specified will not be picked up by reflective access.\
 The default target policy allows the annotation to be applied to any object except type parameter.
@@ -7247,6 +7192,7 @@ public @interface Required {
 }
 ```
 **(C) Scenario: Accessing Annotations to Perform Checks**
+
 Declared annotations can be used to impose constraints on a field in a class. Hence, a combination of annotations and\
 reflections can be used to insert checks/controls. The annotation specifies the constraints while reflection enforces it.
 
@@ -7343,6 +7289,7 @@ public class Main {
 }
 ```
 **(D) Using Reflection with Generic Classes and Methods**
+
 _Limitations of reflections in terms of type parameters and parametrized classes:_
 * Generic class loses some information that are rather available to non-generic classes. 
 * The information on type parameter of a generic class is not accessible to the reflects API. 
@@ -7492,10 +7439,8 @@ public class AppaMain{
 ??----???
 
 ## 16: Java Archive (JAR): Building Java Archives
-
-Deals with packing the codes into a form that can be deployed and distributed.
-Java archives(JAR) files is built using the jar utility which can be run from the command line.
-JAR files can either be directly executable or can be used as dependency in order project(when not directly executable).
+Java archives(JAR) files is built using the jar utility which can be run from the command line. JAR files can either be directly\
+executable or can be used as dependency in order project(when not directly executable).
 
 **(A) Creating the Contents of a JAR file and Building and Running an Executable JAR file**\
 JAR files are effectively a package which include some java class files as well as associated resources such as texts,\
